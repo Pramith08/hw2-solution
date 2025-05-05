@@ -25,9 +25,10 @@ public class ExpenseTrackerView extends JFrame {
 
   private JButton clearFilterBtn;
 
-  private JButton undoButton;  // NEW
+  private JButton undoButton;
+
     
-  private List<Transaction> displayedTransactions = new ArrayList<>(); // ✅ Moved here
+  private List<Transaction> displayedTransactions = new ArrayList<>();
 
   public ExpenseTrackerView() {
     setTitle("Expense Tracker");
@@ -75,7 +76,6 @@ public class ExpenseTrackerView extends JFrame {
 
     undoButton = new JButton("Undo");
     buttonPanel.add(undoButton); // Add to panel
-
 
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setVisible(true);
@@ -136,7 +136,7 @@ public class ExpenseTrackerView extends JFrame {
     
   public void refreshTable(List<Transaction> transactions) {
     model.setRowCount(0);
-    this.displayedTransactions = transactions; // ✅ Track displayed transactions
+    this.displayedTransactions = transactions;
 
     int rowNum = model.getRowCount();
     double totalCost = 0;
@@ -202,6 +202,7 @@ public class ExpenseTrackerView extends JFrame {
     }
     return displayedTransactions.get(selectedRow);
   }
+
 
 
 

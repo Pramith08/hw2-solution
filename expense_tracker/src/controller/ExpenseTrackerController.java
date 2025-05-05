@@ -39,6 +39,7 @@ public class ExpenseTrackerController {
             view.showUndoNotAvailable();
         }
     });
+  
   }
 
 
@@ -81,5 +82,4 @@ public class ExpenseTrackerController {
     }
     view.displayFilteredTransactions(filteredTransactions);
   }
-    
 }
