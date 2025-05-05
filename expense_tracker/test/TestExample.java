@@ -214,9 +214,6 @@ public class TestExample {
 
     @Test
     public void testRemoveNonExistentTransaction() {
-    // This is the NEW test case for Homework 3
-    //
-    // Step 1: Add a valid transaction
     double amount = 50.0;
     String category = CATEGORY_FOOD;
     Transaction existingTransaction = new Transaction(amount, category);
@@ -224,18 +221,14 @@ public class TestExample {
     
     assertEquals(1, model.getTransactions().size());
 
-    // Step 2: Create a different transaction (same amount & category, but different timestamp)
-    Transaction fakeTransaction = new Transaction(amount, category); // new object, not in list
+    Transaction fakeTransaction = new Transaction(amount, category);
 
-    // Step 3: Try to remove the non-existent transaction
     model.removeTransaction(fakeTransaction);
 
-    // Step 4: Check that the original transaction is still present
     List<Transaction> transactions = model.getTransactions();
     assertEquals(1, transactions.size());
     assertEquals(existingTransaction.getTimestamp(), transactions.get(0).getTimestamp());
 
-    // Step 5: Check total cost remains the same
     assertEquals(amount, getTotalCost(), 0.01);
 }
 
