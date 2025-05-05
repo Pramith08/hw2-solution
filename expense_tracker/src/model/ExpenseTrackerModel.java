@@ -3,31 +3,40 @@ package model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Stack;
 
 public class ExpenseTrackerModel {
+   private List<Transaction> transactions = new ArrayList<>();
+   private Stack<Transaction> undoStack = new Stack<>();
 
-  //encapsulation - data integrity
-  private List<Transaction> transactions;
+   public ExpenseTrackerModel() {}
 
-  public ExpenseTrackerModel() {
-    transactions = new ArrayList<>(); 
-  }
+   public void addTransaction(Transaction var1) {
+      if (var1 == null) {
+         throw new IllegalArgumentException("The new transaction must be non-null.");
+      }
+      this.transactions.add(var1);
+      this.undoStack.push(var1);  // Track for undo
+   }
 
-  public void addTransaction(Transaction t) {
-    // Perform input validation to guarantee that all transactions added are non-null.
-    if (t == null) {
-      throw new IllegalArgumentException("The new transaction must be non-null.");
-    }
-    transactions.add(t);
-  }
+   public void removeTransaction(Transaction var1) {
+      this.transactions.remove(var1);
+   }
 
-  public void removeTransaction(Transaction t) {
-    transactions.remove(t);
-  }
+   public List<Transaction> getTransactions() {
+      return Collections.unmodifiableList(new ArrayList<>(this.transactions));
+   }
 
-  public List<Transaction> getTransactions() {
-    //encapsulation - data integrity
-    return Collections.unmodifiableList(new ArrayList<>(transactions));
-  }
+   public boolean undoLastTransaction() {
+      if (!undoStack.isEmpty()) {
+         Transaction last = undoStack.pop();
+         transactions.remove(last);
+         return true;
+      }
+      return false;
+   }
 
+   public boolean canUndo() {
+      return !undoStack.isEmpty();
+   }
 }
