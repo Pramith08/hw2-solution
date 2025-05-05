@@ -24,6 +24,8 @@ public class ExpenseTrackerView extends JFrame {
   private JButton amountFilterBtn;
 
   private JButton clearFilterBtn;
+
+  private JButton undoButton; //NEW
     
   private List<Transaction> displayedTransactions = new ArrayList<>(); // ✅ Moved here
 
@@ -70,6 +72,10 @@ public class ExpenseTrackerView extends JFrame {
     add(inputPanel, BorderLayout.NORTH);
     add(new JScrollPane(transactionsTable), BorderLayout.CENTER); 
     add(buttonPanel, BorderLayout.SOUTH);
+
+    undoButton = new JButton("Undo");
+    buttonPanel.add(undoButton); // Add to panel
+
 
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setVisible(true);
@@ -181,6 +187,23 @@ public class ExpenseTrackerView extends JFrame {
 
   //     transactionsTable.repaint();
   // }
+
+  public JButton getUndoButton() {
+    return undoButton;
+  }
+
+  public void showUndoNotAvailable() {
+    JOptionPane.showMessageDialog(this, "No transaction to undo.");
+  }
+
+  public Transaction getSelectedTransaction() {
+    int selectedRow = transactionsTable.getSelectedRow();
+    if (selectedRow == -1 || selectedRow >= displayedTransactions.size()) {
+        return null;
+    }
+    return displayedTransactions.get(selectedRow);
+  }
+
 
 
 }

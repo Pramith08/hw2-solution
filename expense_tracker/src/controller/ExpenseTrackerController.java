@@ -25,7 +25,24 @@ public class ExpenseTrackerController {
   public ExpenseTrackerController(ExpenseTrackerModel model, ExpenseTrackerView view) {
     this.model = model;
     this.view = view;
-  }
+
+    view.getUndoButton().addActionListener(e -> {
+        Transaction selected = view.getSelectedTransaction();
+
+        if (selected != null) {
+            model.removeTransaction(selected);
+            refresh();
+        } else if (model.canUndo()) {
+            model.undoLastTransaction();
+            refresh();
+        } else {
+            view.showUndoNotAvailable();
+        }
+    });
+}
+
+// Hells
+
 
   public void setFilter(TransactionFilter filter) {
     // Sets the Strategy class being used in the applyFilter method.
