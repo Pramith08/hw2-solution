@@ -41,9 +41,6 @@ public class ExpenseTrackerController {
     });
 }
 
-// Hells
-
-
   public void setFilter(TransactionFilter filter) {
     // Sets the Strategy class being used in the applyFilter method.
     this.filter = filter;
