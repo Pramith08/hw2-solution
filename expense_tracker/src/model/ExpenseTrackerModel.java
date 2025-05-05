@@ -16,7 +16,7 @@ public class ExpenseTrackerModel {
          throw new IllegalArgumentException("The new transaction must be non-null.");
       }
       this.transactions.add(var1);
-      this.undoStack.push(var1);  // Track for undo
+      this.undoStack.push(var1);
    }
 
    public void removeTransaction(Transaction var1) {

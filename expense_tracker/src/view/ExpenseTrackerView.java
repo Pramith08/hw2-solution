@@ -75,7 +75,7 @@ public class ExpenseTrackerView extends JFrame {
     add(buttonPanel, BorderLayout.SOUTH);
 
     undoButton = new JButton("Undo");
-    buttonPanel.add(undoButton); // Add to panel
+    buttonPanel.add(undoButton);
 
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setVisible(true);
